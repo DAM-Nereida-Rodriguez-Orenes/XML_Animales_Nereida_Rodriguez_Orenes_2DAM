@@ -6,10 +6,10 @@ package animals;
 
 /**
  *
- * @author Asus
+ * @author Nereida Rodríguez Orenes 2ºDAM
  */
 public class VentanaAnimales extends javax.swing.JFrame {
-
+    private java.util.List<String> animales = new java.util.ArrayList<>();
     /**
      * Creates new form VentanaAnimales
      */
@@ -42,6 +42,11 @@ public class VentanaAnimales extends javax.swing.JFrame {
         lbAnimal.setText("Animal: ");
 
         btnAgregar.setText("Agregar animal");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         btnGenerar.setText("Generar XML");
 
@@ -108,6 +113,22 @@ public class VentanaAnimales extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        String nombre = txtAnimal.getText().trim(); 
+        if (!nombre.isEmpty()) { 
+            //Un máximo de 5 animales -> investigar cómo hacerlo flexible
+            if (animales.size() < 5) { 
+                animales.add(nombre); 
+                txtLista.append(nombre + " "); 
+                txtAnimal.setText(""); 
+            } else { 
+                javax.swing.JOptionPane.showMessageDialog(this, "Ya has introducido cinco animales.");
+            } 
+        } else { 
+            javax.swing.JOptionPane.showMessageDialog(this, "Introduce un nombre."); 
+        }
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
